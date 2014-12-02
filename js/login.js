@@ -3,24 +3,16 @@
     "use strict";
 
     // the main firebase reference
-    var rootRef = new Firebase('https://cnxy0ni0wzu.firebaseio.com/web/uauth');
+    window.rootRef = new Firebase('https://incandescent-inferno-6448.firebaseio.com/');
 
     // pair our routes to our form elements and controller
     var routeMap = {
         '#/': {
-            form: 'frmLogin',
+            form: 'loginForm',
             controller: 'login'
         },
-            '#/logout': {
-            form: 'frmLogout',
-            controller: 'logout'
-        },
-            '#/register': {
-            form: 'frmRegister',
-            controller: 'register'
-        },
-            '#/profile': {
-            form: 'frmProfile',
+        '#/profile': {
+            form: 'profile',
             controller: 'profile',
             authRequired: true // must be logged in to get here
         },
@@ -32,35 +24,14 @@
     // store the active form shown on the page
     var activeForm = null;
 
-    var alertBox = $('#alert');
-
     function routeTo(route) {
         window.location.href = '#/' + route;
     }
-
-    // Handle third party login providers
-    // returns a promise
-    function thirdPartyLogin(provider) {
-        var deferred = $.Deferred();
-
-        rootRef.authWithOAuthPopup(provider, function (err, user) {
-            if (err) {
-                deferred.reject(err);
-            }
-
-            if (user) {
-                deferred.resolve(user);
-            }
-        });
-
-        return deferred.promise();
-    };
 
     // Handle Email/Password login
     // returns a promise
     function authWithPassword(userObj) {
         var deferred = $.Deferred();
-        console.log(userObj);
         rootRef.authWithPassword(userObj, function onAuth(err, user) {
             if (err) {
                 deferred.reject(err);
@@ -101,57 +72,6 @@
         });
     }
 
-    // authenticate anonymously
-    // returns a promise
-    function authAnonymously() {
-        var deferred = $.Deferred();
-        rootRef.authAnonymously(function (err, authData) {
-
-            if (authData) {
-                deferred.resolve(authData);
-            }
-
-            if (err) {
-                deferred.reject(err);
-            }
-
-        });
-
-        return deferred.promise();
-    }
-
-    // route to the specified route if sucessful
-    // if there is an error, show the alert
-    function handleAuthResponse(promise, route) {
-        $.when(promise)
-            .then(function (authData) {
-
-            // route
-            routeTo(route);
-
-        }, function (err) {
-            console.log(err);
-            // pop up error
-            showAlert({
-                title: err.code,
-                detail: err.message,
-                className: 'alert-danger'
-            });
-
-        });
-    }
-
-    // options for showing the alert box
-    function showAlert(opts) {
-        var title = opts.title;
-        var detail = opts.detail;
-        var className = 'alert ' + opts.className;
-
-        alertBox.removeClass().addClass(className);
-        alertBox.children('#alert-title').text(title);
-        alertBox.children('#alert-detail').text(detail);
-    }
-
     /// Controllers
     ////////////////////////////////////////
 
@@ -159,50 +79,23 @@
 
         // Form submission for logging in
         form.on('submit', function (e) {
-
-            var userAndPass = $(this).serializeObject();
-            var loginPromise = authWithPassword(userAndPass);
             e.preventDefault();
+            // looks like {email: "..", password: ".."}
+            var inputData = {
+                email: this.querySelector('input[name="email"]').value,
+                password: this.querySelector('input[name="password"]').value
+            }
+            //var loginPromise = createUserAndLogin(userAndPass); // is for creating a user            
+            var loginPromise = authWithPassword(inputData);
 
-            handleAuthResponse(loginPromise, 'profile');
-
-        });
-
-        // Social buttons
-        form.children('.bt-social').on('click', function (e) {
-
-            var $currentButton = $(this);
-            var provider = $currentButton.data('provider');
-            var socialLoginPromise;
-            e.preventDefault();
-
-            socialLoginPromise = thirdPartyLogin(provider);
-            handleAuthResponse(socialLoginPromise, 'profile');
-
-        });
-
-        form.children('#btAnon').on('click', function (e) {
-            e.preventDefault();
-            handleAuthResponse(authAnonymously(), 'profilex');
-        });
-
-    };
-
-    // logout immediately when the controller is invoked
-    controllers.logout = function (form) {
-        rootRef.unauth();
-    };
-
-    controllers.register = function (form) {
-
-        // Form submission for registering
-        form.on('submit', function (e) {
-
-            var userAndPass = $(this).serializeObject();
-            var loginPromise = createUserAndLogin(userAndPass);
-            e.preventDefault();
-
-            handleAuthResponse(loginPromise, 'profile');
+            loginPromise.then(function(data){
+                // console.log('succeeded', data)
+                routeTo('profile');
+            }).fail(function(errorMessage){
+                createUserAndLogin(inputData).then(function(){
+                    routeTo('profile');
+                })
+            })
 
         });
 
@@ -264,7 +157,7 @@
         // current user then go to the register page and
         // stop executing
         if (formRoute.authRequired && !currentUser) {
-            routeTo('register');
+            routeTo('');
             return;
         }
 
@@ -298,15 +191,10 @@
 
     /// Routes
     ///  #/         - Login
-    //   #/logout   - Logut
-    //   #/register - Register
     //   #/profile  - Profile
 
     Path.map("#/").to(prepRoute);
-    Path.map("#/logout").to(prepRoute);
-    Path.map("#/register").to(prepRoute);
     Path.map("#/profile").to(prepRoute);
-
     Path.root("#/");
 
     /// Initialize
@@ -319,21 +207,7 @@
 
         // whenever authentication happens send a popup
         rootRef.onAuth(function globalOnAuth(authData) {
-
-            if (authData) {
-                showAlert({
-                    title: 'Logged in!',
-                    detail: 'Using ' + authData.provider,
-                    className: 'alert-success'
-                });
-            } else {
-                showAlert({
-                    title: 'You are not logged in',
-                    detail: '',
-                    className: 'alert-info'
-                });
-            }
-
+            console.log(authData)
         });
 
     });

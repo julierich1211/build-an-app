@@ -10,7 +10,10 @@ function app(){
         {url: "./bower_components/jquery/dist/jquery.min.js"},
         {url: "./bower_components/lodash/dist/lodash.min.js"},
         {url: "./bower_components/backbone/backbone.js"},
+        {url: "./bower_components/backfire/dist/backbonefire.js"},
         {url: "./dist/login.css"},
+        {url: "./dist/style.css"},
+        {url: "./bower_components/pathjs/path.js"},
         {url: "./js/login.js"}
        
     ).then(function(){
