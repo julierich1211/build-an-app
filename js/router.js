@@ -4,7 +4,7 @@
 
     app.Router = Backbone.Router.extend({
         routes: {
-            'edit': 'editUser',
+            'edit': 'editChore',
             '/': 'home'
         },
 
@@ -23,7 +23,7 @@
                 
             });
             
-            this.appView.$el.find('.container').append(this.choresView.el);
+            this.appView.$el.find('.choreList-template').append(this.choresView.el);
 
 
 
@@ -35,10 +35,7 @@
 
 
 
-    // router.on('route:editUser', function() {
-
-
-    // });
+    
 
     Router = app.Router;
 
