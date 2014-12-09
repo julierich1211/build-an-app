@@ -1,0 +1,19 @@
+<a href="#/new" class="btn btn-primary">New</a>
+    <hr />
+    <table class="table striped">
+      <thead>
+        <tr>
+          <th>First Name</th><th>Last Name</th><th>Age</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% _.each(chores, function(chore) { %>
+          <tr>
+            <td><%= htmlEncode(chore.get('firstname')) %></td>
+            <td><%= htmlEncode(chore.get('lastname')) %></td>
+            <td><%= htmlEncode(chore.get('age')) %></td>
+            <td><a class="btn" href="#/edit/<%= chore.id %>">Edit</a></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>

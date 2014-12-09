@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="./bower_components/normalize.css/normalize.css">
     <link rel="stylesheet" type="text/css" href="./bower_components/typeplate-starter-kit/css/typeplate.css">
+    <script src='https://cdn.firebase.com/js/client/1.1.1/firebase.js'></script>
     <title></title>
 </head>
 
@@ -25,7 +26,7 @@
             <button type="submit" class="btn btn-default btn-block">Login</button>
         </form>
         <!-- / LOGIN -->
-
+        
         <!-- PROFILE -->
         <form id="profile" role="form">
             <h2>Profile</h2>
@@ -48,20 +49,7 @@
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
         <!-- / PROFILE -->
-        <!-- / Chorelist-->
-        <script type="text/template" id="choreList-template">
-            <div class="chore">
-                <h6 id="name">{id}</h6>
-                <img src="{picture}" id="Picture">
-                <p id='points'>{points}</p>
-                <hr>
 
-                <button><a href="/edit" class="button">Edit button</a>
-                </button>
-
-
-            </div>
-        </script>
     </div>
 
     <script type="text/javascript" src="./bower_components/Loader/loader.js" id="loaderjs" data-app="./js/app.js"></script>

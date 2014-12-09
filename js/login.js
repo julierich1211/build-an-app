@@ -1,4 +1,19 @@
-//var ref = new Firebase("https://cnxy0ni0wzu.firebaseio.com");
+$.fn.serializeObject = function()
+{
+   var o = {};
+   var a = this.serializeArray();
+   $.each(a, function() {
+       if (o[this.name]) {
+           if (!o[this.name].push) {
+               o[this.name] = [o[this.name]];
+           }
+           o[this.name].push(this.value || '');
+       } else {
+           o[this.name] = this.value || '';
+       }
+   });
+   return o;
+};
 (function (jQuery, Firebase, Path) {
     "use strict";
 
@@ -14,6 +29,11 @@
         '#/profile': {
             form: 'profile',
             controller: 'profile',
+            authRequired: true // must be logged in to get here
+        },
+        '#/choreList': {
+            form: 'chorelist',
+            controller: 'chorelist',
             authRequired: true // must be logged in to get here
         },
     };
@@ -84,6 +104,7 @@
             var inputData = {
                 email: this.querySelector('input[name="email"]').value,
                 password: this.querySelector('input[name="password"]').value
+                
             }
             //var loginPromise = createUserAndLogin(userAndPass); // is for creating a user            
             var loginPromise = authWithPassword(inputData);
@@ -122,13 +143,13 @@
 
             // set the fields
             form.find('#txtName').val(user.name);
-            form.find('#ddlDino').val(user.favoriteDinosaur);
+            form.find('#ddlTitle').val(user.placeinfamily);
         });
 
         // Save user's info to Firebase
         form.on('submit', function (e) {
             e.preventDefault();
-            var userInfo = $(this).serializeObject();
+            var userInfo = $(userInfo).serializeObject();
 
             userRef.set(userInfo, function onComplete() {
 
@@ -195,6 +216,7 @@
 
     Path.map("#/").to(prepRoute);
     Path.map("#/profile").to(prepRoute);
+    Path.map("#/choreList").to(prepRoute);
     Path.root("#/");
 
     /// Initialize

@@ -11,10 +11,17 @@ function app(){
         {url: "./bower_components/lodash/dist/lodash.min.js"},
         {url: "./bower_components/backbone/backbone.js"},
         {url: "./bower_components/backfire/dist/backbonefire.js"},
+        {url: "./bower_components/underscore/underscore-min.js"},
         {url: "./dist/login.css"},
         {url: "./dist/style.css"},
         {url: "./bower_components/pathjs/path.js"},
-        {url: "./js/login.js"}
+       {url: "./js/login.js"},
+      {url: "./js/appView.js"},
+      {url: "./js/choremodel.js"},
+      {url: "./js/ChoresCollection.js"},
+      {url: "./js/ChoresCollectionView.js"},
+      {url: "./js/ChoresView.js"},
+      {url: "./js/router.js"}
        
     ).then(function(){
         _.templateSettings.interpolate = /{([\s\S]+?)}/g;
