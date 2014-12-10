@@ -216,7 +216,7 @@ $.fn.serializeObject = function()
 
     Path.map("#/").to(prepRoute);
     Path.map("#/profile").to(prepRoute);
-    Path.map("#/choreList").to(prepRoute);
+    Path.map("#/chore").to(prepRoute);
     Path.root("#/");
 
     /// Initialize
