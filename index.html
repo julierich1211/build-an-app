@@ -48,19 +48,32 @@
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
         <!-- / PROFILE -->
+
+        <!-- CHORELIST -->
+        <div id="chore" role="form">
+            <!-- chores go here -->
+        </div>
+        <!-- / CHORELIST -->
+
         <!-- / Chorelist-->
-        <script type="text/template" id="choreList-template">
-            <div class="chore">
-                <h6 id="name">{id}</h6>
-                <img src="{picture}" id="Picture">
-                <p id='points'>{points}</p>
-                <hr>
-
-                <button><a href="/edit" class="button">Edit button</a>
-                </button>
-
-
-            </div>
+        <script type="text/template" id="chores-template">
+            <h1>{name}</h1>
+            <hr>
+            <form id="createChoreForm">
+                <p>Add a new chore:</p>
+                <input type="text" name="description" placeholder="chore description">
+                <input type="text" name="assignedTo" placeholder="assign to...">
+                <button type="submit" > Submit </button>
+            </form>
+            <ul class="chores">
+                <% _.forEach(chores, function(c) { %>
+                    <br>
+                    <li class="chore">
+                        <strong>{c.assignedTo}</strong> : {c.description} <button modelId="{c.id}" class="Delete">Delete</button>
+                    </li>
+                    <br>
+                <% }); %>
+            </ul>
         </script>
     </div>
 
