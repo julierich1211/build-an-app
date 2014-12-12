@@ -5,7 +5,7 @@ html {
 body {
     margin: 0
 }
-article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+article, aside, details, figcaption, figure, footer, hgroup, main, nav, section, summary {
     display: block
 }
 audio, canvas, progress, video {
@@ -611,6 +611,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small
     font - weight: 400;
     line - height: 1;
     color: #777}h1,.h1,h2,.h2,h3,.h3{margin-top:20px;margin-bottom:10px}h1 small,.h1 small,h2 small,.h2 small,h3 small,.h3 small,h1 .small,.h1 .small,h2 .small,.h2 .small,h3 .small,.h3 .small{font-size:65%}h4,.h4,h5,.h5,h6,.h6{margin-top:10px;margin-bottom:10px}h4 small,.h4 small,h5 small,.h5 small,h6 small,.h6 small,h4 .small,.h4 .small,h5 .small,.h5 .small,h6 .small,.h6 .small{font-size:75%}h1,.h1{font-size:36px}h2,.h2{font-size:30px}h3,.h3{font-size:24px}h4,.h4{font-size:18px}h5,.h5{font-size:14px}h6,.h6{font-size:12px}p{margin:0 0 10px}.lead{margin-bottom:20px;font-size:16px;font-weight:300;line-height:1.4}@media (min-width:768px){.lead{font-size:21px}}small,.small{font-size:85%}cite{font-style:normal}mark,.mark{padding:.2em;background-color:# fcf8e3
+
 }.text - left {
     text - align: left
 }.text - right {
@@ -740,10 +741,10 @@ pre code {
     max - height: 340 px;
     overflow - y: scroll
 }.container {
-    padding - right: 15 px;
-    padding - left: 15 px;
-    margin - right: auto;
-    margin - left: auto
+    padding - right: 0px;
+    padding - left: 0 px;
+    margin - right: 0;
+    margin - left: 0;
 }@
 media(min - width: 768 px) {.container {
         width: 750 px
@@ -757,10 +758,10 @@ media(min - width: 1200 px) {.container {
         width: 1170 px
     }
 }.container - fluid {
-    padding - right: 15 px;
-    padding - left: 15 px;
-    margin - right: auto;
-    margin - left: auto
+    padding - right: 0px;
+    padding - left: 0 px;
+    margin - right: 0;
+    margin - left: 0;
 }.row {
     margin - right: -15 px;
     margin - left: -15 px

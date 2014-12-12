@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html page="home" style="opacity: 0;">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="./bower_components/normalize.css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="./bower_components/typeplate-starter-kit/css/typeplate.css">
     <title></title>
 </head>
 
-<body style="opacity: 0;">
-    <div id="container" class="container">
+<body>
+    <div class="container">
+
         <!-- LOGIN -->
         <form id="loginForm" role="form">
             <h2>Login/Register</h2>
@@ -22,7 +21,8 @@
                 <input type="password" class="form-control" id="txtPass" placeholder="Password" name="password" />
             </div>
 
-            <button type="submit" class="btn btn-default btn-block">Login</button>
+            <button type="submit" class="btn waves-effect waves-light"> Welcome <i class="mdi-content-send right"></i>
+            </button>
         </form>
         <!-- / LOGIN -->
 
@@ -45,35 +45,43 @@
                     <option>Grandchild</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn waves-effect waves-light">Create Chore List<i class="mdi-content-send right"></i>
+            </button>
         </form>
         <!-- / PROFILE -->
 
         <!-- CHORELIST -->
-        <div id="chore" role="form">
+        <div id="chore" class= "chore" role="form">
             <!-- chores go here -->
+
         </div>
         <!-- / CHORELIST -->
 
         <!-- / Chorelist-->
         <script type="text/template" id="chores-template">
-            <h1>{name}</h1>
-            <hr>
-            <form id="createChoreForm">
-                <p>Add a new chore:</p>
-                <input type="text" name="description" placeholder="chore description">
-                <input type="text" name="assignedTo" placeholder="assign to...">
-                <button type="submit" > Submit </button>
-            </form>
-            <ul class="chores">
-                <% _.forEach(chores, function(c) { %>
-                    <br>
-                    <li class="chore">
-                        <strong>{c.assignedTo}</strong> : {c.description} <button modelId="{c.id}" class="Delete">Delete</button>
-                    </li>
-                    <br>
-                <% }); %>
-            </ul>
+    
+            <div class="user">
+                <p class= "unamet">{name}</p>
+                <hr>
+                <form id="createChoreForm">
+                    <p>Add a new chore:</p>
+                    <input type="text" name="description" placeholder="chore description">
+                    <input type="text" name="assignedTo" placeholder="assign to...">
+                    <button type="submit" class="btn waves-effect waves-light"> Add Chore<i class="mdi-content-send right"></i>
+                    </button>
+                </form>
+                <ul class="chores">
+                    <% _.forEach(chores, function(c) { %>
+                        <br>
+                        <li class="chored">
+                            <strong>{c.assignedTo}</strong> : {c.description}
+                            <hr>
+                            <button modelId="{c.id}" class="Delete">Completed/Remove From List</button>
+                        </li>
+                        <br>
+                        <% }); %>
+                </ul>
+            </div>
         </script>
     </div>
 

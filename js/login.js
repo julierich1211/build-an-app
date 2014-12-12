@@ -179,7 +179,7 @@ controllers.chore = function(containerElement) {
             var myChores = CHORES.filter(function(c) {
                 return c.get('userId') === user.uid
             });
-            
+
             // turn each model that belongs to me into a POJO {}
             myChores = myChores.map(function(c) {
                 return c.toJSON();

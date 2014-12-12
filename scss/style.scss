@@ -50,15 +50,91 @@
 /**
  * GENERAL
  */
-
+html {
+    height: 100%;
+}
+html::before {
+    content: "";
+    display: block;
+    padding-top: 50%;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-position: center;
+}
+html[page="home"]::before {
+    background-image: url(../images/typewriter.jpg);
+}
 body {
     transition: opacity .25s ease;
+    // min-height: 100%;
 }
-    
 
+@media (min-width:600px){
+    html::before {
+        content: "";
+        display: block;
+        position: fixed;
+        top:0;
+        left:0;
+        height:100%;
+        width: 33%;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-attachment: fixed;
+        height: 100%;
+        z-index: -1;
+        padding-top: 0;
+    }
+}
 /**
  * form roles
  */
 [role="form"] {
     display: none;
+}
+
+/** MY STYLES **/
+.chore {
+    // background-image: url("https://ununsplash.imgix.net/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?dpr=2&fit=crop&fm=jpg&h=1550&q=75&w=1050");
+    // background-repeat: no-repeat;
+    // background-size: contain;
+    // background-position: left;  
+    // height: 100%;
+    // max-width: 800px;
+}
+p.unamet {
+    text-align: left;
+    // padding-left: 13em;
+    position: inherit;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: inherit;
+}
+form#createChoreForm {
+    // float: right;
+    // position: absolute;
+    // padding-left: 35em;
+}
+ul.chores {
+    position: relative;
+    // padding-left: 35em;
+    padding-top: 2em;
+    margin: 0px;
+    display: block;
+}
+
+.container {
+    width: auto !important;
+    max-width: auto !important;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+@media (min-width:600px){
+    .container {
+        margin-left: 33%;
+    }
 }

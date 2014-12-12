@@ -5,7 +5,21 @@ function app() {
     "use strict";
 
     // load some scripts (uses promises :D)
-    loader.load({
+    loader.load(
+        //css
+        {
+            url: "./bower_components/normalize.css/normalize.css"
+        }, {
+            url: "./bower_components/typeplate-starter-kit/css/typeplate.css"
+        }, {
+            url: "./bower_components/materialize/bin/materialize.css"
+        }, {
+            url: "./dist/style.css"
+        },
+
+        //js
+
+        {
             url: "./bower_components/jquery/dist/jquery.min.js"
         }, {
             url: "./bower_components/lodash/dist/lodash.min.js"
@@ -18,9 +32,7 @@ function app() {
         }, {
             url: "./bower_components/underscore/underscore-min.js"
         }, {
-            url: "./dist/login.css"
-        }, {
-            url: "./dist/style.css"
+            url: "./bower_components/materialize/bin/materialize.js"
         }, {
             url: "./bower_components/pathjs/path.js"
         }, {
@@ -38,7 +50,7 @@ function app() {
 
     ).then(function() {
         _.templateSettings.interpolate = /{([\s\S]+?)}/g;
-        document.body.style.opacity = 1;
+        document.querySelector('html').style.opacity = 1;
         // start app?
     })
 
